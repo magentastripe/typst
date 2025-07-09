@@ -127,3 +127,241 @@
 #rect()
 #rect(height: 60pt)
 #rect(width: 60pt)
+
+--- rect-stroke-variations-without-radius ---
+#set page(width: 12cm)
+#let bg-rect(inner) = {
+  rect(inset: 0pt, outset: 0pt, fill: luma(200), inner)
+}
+#let test-block(cap: "butt", dash: none, adjacent: none, radius: 0pt) = {
+  let adjacent-stroke = if adjacent == none {
+    none
+  } else {
+    (thickness: adjacent, paint: red, dash: dash)
+  }
+  bg-rect(
+    block(
+      height: 4em,
+      width: 5em,
+      stroke: (
+        top: adjacent-stroke,
+        right: (cap: cap, thickness: 6pt, dash: dash, paint: green.transparentize(40%)),
+        bottom: (cap: cap, thickness: 2pt, dash: dash, paint: blue.transparentize(40%)),
+        left: adjacent-stroke
+      ),
+      radius: radius,
+    )
+  )
+}
+#table(
+  columns: 4 * (1fr,),
+  [], [butt], [square], [round],
+  [no dash],
+  test-block(cap: "butt"),
+  test-block(cap: "square"),
+  test-block(cap: "round"),
+
+  [dashed],
+  test-block(cap: "butt", dash: "dashed"),
+  test-block(cap: "square", dash: "dashed"),
+  test-block(cap: "round", dash: "dashed"),
+
+  [loosely-dashed],
+  test-block(cap: "butt", dash: "loosely-dashed"),
+  test-block(cap: "square", dash: "loosely-dashed"),
+  test-block(cap: "round", dash: "loosely-dashed"),
+)
+
+--- rect-stroke-variations-with-radius ---
+#set page(width: 12cm)
+#let bg-rect(inner) = {
+  rect(inset: 0pt, outset: 0pt, fill: luma(200), inner)
+}
+#let test-block(cap: "butt", dash: none, adjacent: none, radius: 0pt) = {
+  let adjacent-stroke = if adjacent == none {
+    none
+  } else {
+    (thickness: adjacent, paint: red, dash: dash)
+  }
+  bg-rect(
+    block(
+      height: 4em,
+      width: 5em,
+      stroke: (
+        top: adjacent-stroke,
+        right: (cap: cap, thickness: 6pt, dash: dash, paint: green.transparentize(40%)),
+        bottom: (cap: cap, thickness: 2pt, dash: dash, paint: blue.transparentize(40%)),
+        left: adjacent-stroke
+      ),
+      radius: radius,
+    )
+  )
+}
+#table(
+  columns: 4 * (1fr,),
+  [], [butt], [square], [round],
+  [no dash],
+  test-block(cap: "butt", radius: 12pt),
+  test-block(cap: "square", radius: 12pt),
+  test-block(cap: "round", radius: 12pt),
+
+  [dashed],
+  test-block(cap: "butt", radius: 12pt, dash: "dashed"),
+  test-block(cap: "square", radius: 12pt, dash: "dashed"),
+  test-block(cap: "round", radius: 12pt, dash: "dashed"),
+
+  [loosely-dashed],
+  test-block(cap: "butt", radius: 12pt, dash: "loosely-dashed"),
+  test-block(cap: "square", radius: 12pt, dash: "loosely-dashed"),
+  test-block(cap: "round", radius: 12pt, dash: "loosely-dashed"),
+)
+
+--- rect-stroke-variations-with-radius-and-adjacent-zero-width-stroke ---
+#set page(width: 12cm)
+#let bg-rect(inner) = {
+  rect(inset: 0pt, outset: 0pt, fill: luma(200), inner)
+}
+#let test-block(cap: "butt", dash: none, adjacent: none, radius: 0pt) = {
+  let adjacent-stroke = if adjacent == none {
+    none
+  } else {
+    (thickness: adjacent, paint: red, dash: dash)
+  }
+  bg-rect(
+    block(
+      height: 4em,
+      width: 5em,
+      stroke: (
+        top: adjacent-stroke,
+        right: (cap: cap, thickness: 6pt, dash: dash, paint: green.transparentize(40%)),
+        bottom: (cap: cap, thickness: 2pt, dash: dash, paint: blue.transparentize(40%)),
+        left: adjacent-stroke
+      ),
+      radius: radius,
+    )
+  )
+}
+#table(
+  columns: 4 * (1fr,),
+  [], [butt], [square], [round],
+  [no dash],
+  test-block(cap: "butt", radius: 12pt, adjacent: 0pt),
+  test-block(cap: "square", radius: 12pt, adjacent: 0pt),
+  test-block(cap: "round", radius: 12pt, adjacent: 0pt),
+
+  [dashed],
+  test-block(cap: "butt", radius: 12pt, adjacent: 0pt, dash: "dashed"),
+  test-block(cap: "square", radius: 12pt, adjacent: 0pt, dash: "dashed"),
+  test-block(cap: "round", radius: 12pt, adjacent: 0pt, dash: "dashed"),
+
+  [loosely-dashed],
+  test-block(cap: "butt", radius: 12pt, adjacent: 0pt, dash: "loosely-dashed"),
+  test-block(cap: "square", radius: 12pt, adjacent: 0pt, dash: "loosely-dashed"),
+  test-block(cap: "round", radius: 12pt, adjacent: 0pt, dash: "loosely-dashed"),
+)
+
+--- rect-stroke-variations-with-radius-and-adjacent-thin-stroke ---
+#set page(width: 12cm)
+#let bg-rect(inner) = {
+  rect(inset: 0pt, outset: 0pt, fill: luma(200), inner)
+}
+#let test-block(cap: "butt", dash: none, adjacent: none, radius: 0pt) = {
+  let adjacent-stroke = if adjacent == none {
+    none
+  } else {
+    (thickness: adjacent, paint: red, dash: dash)
+  }
+  bg-rect(
+    block(
+      height: 4em,
+      width: 5em,
+      stroke: (
+        top: adjacent-stroke,
+        right: (cap: cap, thickness: 6pt, dash: dash, paint: green.transparentize(40%)),
+        bottom: (cap: cap, thickness: 2pt, dash: dash, paint: blue.transparentize(40%)),
+        left: adjacent-stroke
+      ),
+      radius: radius,
+    )
+  )
+}
+#table(
+  columns: 4 * (1fr,),
+  [], [butt], [square], [round],
+  [no dash],
+  test-block(cap: "butt", radius: 12pt, adjacent: 1pt),
+  test-block(cap: "square", radius: 12pt, adjacent: 1pt),
+  test-block(cap: "round", radius: 12pt, adjacent: 1pt),
+
+  [dashed],
+  test-block(cap: "butt", radius: 12pt, adjacent: 1pt, dash: "dashed"),
+  test-block(cap: "square", radius: 12pt, adjacent: 1pt, dash: "dashed"),
+  test-block(cap: "round", radius: 12pt, adjacent: 1pt, dash: "dashed"),
+
+  [loosely-dashed],
+  test-block(cap: "butt", radius: 12pt, adjacent: 1pt, dash: "loosely-dashed"),
+  test-block(cap: "square", radius: 12pt, adjacent: 1pt, dash: "loosely-dashed"),
+  test-block(cap: "round", radius: 12pt, adjacent: 1pt, dash: "loosely-dashed"),
+)
+
+--- rect-small-radius-and-stroke-cap-variations ---
+#set page(width: 12cm)
+#let bg-rect(inner) = {
+  rect(inset: 0pt, outset: 0pt, fill: luma(200), inner)
+}
+#let another-block(cap: "butt", radius: 5pt, adjacent: none) = {
+  let adjacent-stroke = if adjacent != none {
+    adjacent
+  } else {
+    none
+  }
+  bg-rect(
+    block(
+      height: 4em,
+      width: 5em,
+      stroke: (
+        top: adjacent-stroke,
+        right: (cap: cap, thickness: 5pt),
+        bottom: (cap: cap, thickness: 5pt),
+        left: adjacent-stroke,
+      ),
+      radius: radius,
+    )
+  )
+}
+
+#table(
+  columns: 4 * (1fr,),
+  [], [none], [0 width], [thin],
+  [], table.cell(colspan: 3)[radius same as thickness],
+  [butt],
+  another-block(cap: "butt", adjacent: none),
+  another-block(cap: "butt", adjacent: 0pt),
+  another-block(cap: "butt", adjacent: 1pt),
+
+  [square],
+  another-block(cap: "square", adjacent: none),
+  another-block(cap: "square", adjacent: 0pt),
+  another-block(cap: "square", adjacent: 1pt),
+
+  [round],
+  another-block(cap: "round", adjacent: none),
+  another-block(cap: "round", adjacent: 0pt),
+  another-block(cap: "round", adjacent: 1pt),
+
+  [], table.cell(colspan: 3)[radius smaller than thickness],
+  [butt],
+  another-block(cap: "butt", radius: 2pt, adjacent: none),
+  another-block(cap: "butt", radius: 2pt, adjacent: 0pt),
+  another-block(cap: "butt", radius: 2pt, adjacent: 1pt),
+
+  [square],
+  another-block(cap: "square", radius: 2pt, adjacent: none),
+  another-block(cap: "square", radius: 2pt, adjacent: 0pt),
+  another-block(cap: "square", radius: 2pt, adjacent: 1pt),
+
+  [round],
+  another-block(cap: "round", radius: 2pt, adjacent: none),
+  another-block(cap: "round", radius: 2pt, adjacent: 0pt),
+  another-block(cap: "round", radius: 2pt, adjacent: 1pt),
+)
